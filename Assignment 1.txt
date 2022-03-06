@@ -1,0 +1,87 @@
+
+CREATE DATABASE Manufacturer;
+
+CREATE TABLE Product 
+
+(
+	prod_id INT NOT NULL PRIMARY KEY,
+
+	prod_name VARCHAR (50)  NULL,
+
+	quantity INT NULL,
+
+) ;
+
+CREATE TABLE Component
+
+(
+	comp_id INT NOT NULL PRIMARY KEY,
+
+	comp_name VARCHAR (50)  NULL,
+
+	description  VARCHAR (50) NULL,
+
+	quantity_comp 	INT NULL,
+
+) ;
+
+CREATE TABLE Prod_Comp
+
+(
+	prod_id INT NOT NULL,
+
+	comp_id INT NOT  NULL,
+
+	quantity_comp INT NULL,
+
+	PRIMARY KEY (prod_id, comp_id),
+	
+	FOREIGN KEY (prod_id) REFERENCES Product (prod_id) ON DELETE CASCADE ON UPDATE CASCADE,
+
+	FOREIGN KEY (comp_id) REFERENCES Component (comp_id) ON DELETE CASCADE ON UPDATE CASCADE,
+
+) ;
+
+
+CREATE TABLE Supplier
+
+(
+	supp_id INT NOT NULL PRIMARY KEY,
+
+	supp_name VARCHAR (50)  NULL,
+
+	supp_location  VARCHAR (50) NULL,
+
+	supp_country VARCHAR (50) NULL,
+
+	is_active BIT NULL,
+
+) ;
+
+CREATE TABLE Comp_Supp
+
+(
+	supp_id INT NOT NULL,
+
+	comp_id INT NOT  NULL,
+
+	order_date DATE NULL,
+
+	PRIMARY KEY (supp_id, comp_id),
+	
+	FOREIGN KEY (supp_id) REFERENCES Supplier (supp_id) ON DELETE CASCADE ON UPDATE CASCADE,
+
+	FOREIGN KEY (comp_id) REFERENCES Component (comp_id) ON DELETE CASCADE ON UPDATE CASCADE,
+
+) ;
+
+
+
+
+
+
+
+
+
+
+
